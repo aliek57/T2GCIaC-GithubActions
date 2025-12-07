@@ -174,6 +174,7 @@ if (!isset($_SESSION['usuario'])) {
             <!--<a class="dropdown-item" href="cadastroRequisitante.html">Requisitante</a>
               <a class="dropdown-item" href="cadastroSupervisor.html">Supervisor</a>-->
             <a class="dropdown-item" href="cadastroUsuarios.php">Usuário</a>
+            <a class="dropdown-item" href="cadastroEnderecos.php">Endereço</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -256,15 +257,14 @@ if (!isset($_SESSION['usuario'])) {
                 });
               </script>
 
-              <!-- Adicionar campos corretos: rua, numero, cidade, estado, cep -->
-              <div class="col-6">
+              <div class="col-8">
                 <label for="ruaEndereco" class="form-label">Rua</label>
                 <input type="text" class="form-control" id="ruaEndereco" name="ruaEndereco" required="">
                 <div class="invalid-feedback">
                   Obrigatório preenchimento do campo.
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <label for="numeroEndereco" class="form-label">Número</label>
                 <input type="text" class="form-control" id="numeroEndereco" name="numeroEndereco" required="">
                 <div class="invalid-feedback">
@@ -278,14 +278,14 @@ if (!isset($_SESSION['usuario'])) {
                   Obrigatório preenchimento do campo.
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-3">
                 <label for="estadoEndereco" class="form-label">Estado</label>
                 <input type="text" class="form-control" id="estadoEndereco" name="estadoEndereco" required="">
                 <div class="invalid-feedback">
                   Obrigatório preenchimento do campo.
                 </div>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-3">
                 <label for="cepEndereco" class="form-label">CEP</label>
                 <input type="text" class="form-control" id="cepEndereco" name="cepEndereco" required="">
                 <div class="invalid-feedback">
@@ -337,18 +337,17 @@ if (!isset($_SESSION['usuario'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Modal para Visualizar Usuário -->
+    <!-- Modal para Visualizar Endereco -->
     <div class="modal fade" id="modalVisualizar" tabindex="-1" aria-labelledby="modalVisualizarLabel"
       aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalVisualizarLabel">Detalhes do Usuário</h5>
+            <h5 class="modal-title" id="modalVisualizarLabel">Detalhes do Endereço</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="modal-body-content">
-            <!-- Os detalhes do usuário serão carregados aqui -->
-          </div>
+            </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
           </div>
@@ -356,75 +355,41 @@ if (!isset($_SESSION['usuario'])) {
       </div>
     </div>
 
-    <!-- Modal para editar usuário -->
-    <div class="modal fade" id="modalEditarUsuario" tabindex="-1" aria-labelledby="modalEditarUsuarioLabel"
+    <div class="modal fade" id="modalEditarEndereco" tabindex="-1" aria-labelledby="modalEditarEnderecoLabel"
       aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalEditarUsuarioLabel">Editar Usuário</h5>
+            <h5 class="modal-title" id="modalEditarEnderecoLabel">Editar Endereço</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form id="formEditarUsuario">
-              <input type="hidden" id="edit_id" name="id"> <!-- ID escondido -->
-
-              <!-- Nome -->
-              <div class="mb-3">
-                <label for="edit_nome" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="edit_nome" name="nome" required>
+            <form id="formEditarEndereco">
+              <input type="hidden" id="edit_id" name="id"> <div class="mb-3">
+                <label for="edit_rua" class="form-label">Rua</label>
+                <input type="text" class="form-control" id="edit_rua" name="rua" required>
               </div>
 
-              <!-- Matrícula (RA) -->
               <div class="mb-3">
-                <label for="edit_ra" class="form-label">Matrícula (RA)</label>
-                <input type="text" class="form-control" id="edit_ra" name="ra" required>
+                <label for="edit_numero" class="form-label">Número</label>
+                <input type="text" class="form-control" id="edit_numero" name="numero" required>
               </div>
 
-              <!-- Login (atualiza automaticamente com o RA) -->
               <div class="mb-3">
-                <label for="edit_login" class="form-label">Login</label>
-                <input type="text" class="form-control" id="edit_login" name="login" readonly>
+                <label for="edit_cidade" class="form-label">Cidade</label>
+                <input type="text" class="form-control" id="edit_cidade" name="cidade" required>
               </div>
 
-              <!-- E-mail -->
               <div class="mb-3">
-                <label for="edit_email" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="edit_email" name="email" required>
+                <label for="edit_estado" class="form-label">Estado</label>
+                <input type="text" class="form-control" id="edit_estado" name="estado" required>
               </div>
 
-              <!-- Telefone -->
               <div class="mb-3">
-                <label for="edit_telefone" class="form-label">Telefone</label>
-                <input type="text" class="form-control" id="edit_telefone" name="telefone" required>
+                <label for="edit_cep" class="form-label">CEP</label>
+                <input type="text" class="form-control" id="edit_cep" name="cep" required>
               </div>
 
-              <!-- Área -->
-              <div class="mb-3">
-                <label class="form-label">Área</label>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="edit_area" id="edit_areaADM" value="ADM" required>
-                  <label class="form-check-label" for="edit_areaADM">ADM</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="edit_area" id="edit_areaSupervisor"
-                    value="Supervisor" required>
-                  <label class="form-check-label" for="edit_areaSupervisor">Supervisor</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="edit_area" id="edit_areaRequisitante"
-                    value="Requisitante" required>
-                  <label class="form-check-label" for="edit_areaRequisitante">Requisitante</label>
-                </div>
-              </div>
-
-              <!-- Senha -->
-              <div class="mb-3">
-                <label for="edit_senha" class="form-label">Senha (Deixe em branco para manter a atual)</label>
-                <input type="password" class="form-control" id="edit_senha" name="senha">
-              </div>
-
-              <!-- Botões -->
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-primary">Salvar Alterações</button>
@@ -435,35 +400,25 @@ if (!isset($_SESSION['usuario'])) {
       </div>
     </div>
 
-
-
-
-    <!-- INÍCIO DAS FUNÇÕES -->
     <script>
+      // ---------------------------------- MÁSCARA DE CEP -----------------------------------------------------------
       document.addEventListener("DOMContentLoaded", function() {
-        const camposTelefone = ["telefoneUsuario", "edit_telefone"];
+        const camposCep = ["cepEndereco", "edit_cep"];
 
-        camposTelefone.forEach(id => {
+        camposCep.forEach(id => {
           const input = document.getElementById(id);
           if (!input) return;
 
           input.addEventListener("input", function() {
-            let numero = input.value.replace(/\D/g, ""); // Remove não números
+            let cep = input.value.replace(/\D/g, "");
 
-            numero = numero.substring(0, 11); // Limita a 11 dígitos
+            cep = cep.substring(0, 8);
             let formatado = "";
 
-            if (numero.length >= 1) {
-              formatado += "(" + numero.substring(0, 2);
-            }
-            if (numero.length >= 3) {
-              formatado += ") " + numero.substring(2, 3);
-            }
-            if (numero.length >= 4) {
-              formatado += " " + numero.substring(3, 7);
-            }
-            if (numero.length >= 8) {
-              formatado += "-" + numero.substring(7, 11);
+            if (cep.length > 5) {
+               formatado = cep.substring(0, 5) + "-" + cep.substring(5, 8);
+            } else {
+               formatado = cep;
             }
 
             input.value = formatado;
@@ -473,14 +428,12 @@ if (!isset($_SESSION['usuario'])) {
 
       document.addEventListener("keydown", function(event) {
         const element = document.activeElement;
-
-        // Só bloqueia se NÃO estivermos no formulário
         if (event.key === "Enter" && element.tagName === "INPUT" && !element.form) {
           event.preventDefault();
         }
       });
 
-      $("#frmAddUser input").on("input", function() {
+      $("#frmAddAddress input").on("input", function() {
         if (this.checkValidity()) {
           $(this).removeClass("is-invalid");
         } else {
@@ -488,91 +441,66 @@ if (!isset($_SESSION['usuario'])) {
         }
       });
 
-      // ---------------------------------- CADASTRAR -----------------------------------------------------------
+      // ---------------------------------- CADASTRAR ENDEREÇO -----------------------------------------------------------
 
-      document.addEventListener('DOMContentLoaded', function() {
-        const inputData = document.getElementById('dataCadastroUsuario');
-        if (!inputData.value) { // Define a data apenas se o campo estiver vazio
-          const dataAtual = new Date();
-          const ano = dataAtual.getFullYear();
-          const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
-          const dia = String(dataAtual.getDate()).padStart(2, '0');
-          inputData.value = `${ano}-${mes}-${dia}`;
-        }
-      });
-
-      $('#frmAddUser').submit(function(e) {
+      $('#frmAddAddress').submit(function(e) {
         e.preventDefault();
 
-        // Verifica se o formulário é válido
         if (!this.checkValidity()) {
-          // Se o formulário não for válido, ativa as mensagens nativas do navegador
-          //this.reportValidity();
+          this.classList.add('was-validated');
           return;
         }
 
         $.ajax({
           type: "POST",
-          url: "conexao/usuarios/cadastrarUser.php",
+          url: "conexao/enderecos/cadastrarEndereco.php",
           data: $(this).serialize(),
-          //data: { usuario: usuario },
           success: function(response) {
-            //console.log("Resposta do servidor:", response); //DEBUG
-            //const [status, message] = response.split('|'); // Divide a resposta
-            const [status, message] = response.split('|').map(s => s.trim());
+            const parts = response.split('|');
+            const status = parts[0] ? parts[0].trim() : '';
+            const message = parts[1] ? parts[1].trim() : response;
 
             if (status === "1") {
-              //Swal.fire('Sucesso!', response.message, 'success');
               Swal.fire({
                 title: 'Sucesso!',
-                //text: response.message,
                 text: message,
                 icon: 'success',
                 confirmButtonText: 'OK'
               }).then((result) => {
                 if (result.isConfirmed) {
-                  location.reload(); // Atualiza a página após clicar em OK
+                  location.reload(); 
                 }
               });
 
-              // Limpa os campos do formulário, exceto o campo de data
-              $('#frmAddUser').find('input').not('#dataCadastroUsuario').val(''); // Limpa os inputs (exceto data)
-              $('#frmAddUser').find('textarea').val(''); // Limpa textareas
-              $('#frmAddUser').find('select').prop('selectedIndex', 0); // Reseta selects
-              $('#frmAddUser').find('input[type="radio"]').prop('checked', false); // Desmarca rádios
-              $('#frmAddUser').find('input[type="checkbox"]').prop('checked', false); // Desmarca checkbox
+              $('#frmAddAddress').find('input').not('#dataCadastroEndereco').val(''); 
+              $('#frmAddAddress').removeClass('was-validated');
             } else {
               Swal.fire('Erro!', message, 'error');
             }
           },
           error: function() {
-            Swal.fire('Erro!', 'Ocorreu um erro ao cadastrar o usuário.', 'error');
+            Swal.fire('Erro!', 'Ocorreu um erro ao cadastrar o endereço.', 'error');
           }
         });
       });
 
-
-      // ---------------------------------- PESQUISAR -----------------------------------------------------------
+      // ---------------------------------- PESQUISAR ENDEREÇO -----------------------------------------------------------
 
       document.addEventListener("DOMContentLoaded", function() {
-        carregarTodosUsuarios();
+        carregarEnderecos();
 
-        document.getElementById("searchRA").addEventListener("input", function() {
-          const raUsuario = this.value.trim();
+        document.getElementById("searchEndereco").addEventListener("input", function() {
+          const termo = this.value.trim();
 
-          // Se o campo estiver vazio, carrega todos os registros novamente
-          if (raUsuario === "") {
-            carregarTodosUsuarios();
+          if (termo === "") {
+            carregarEnderecos();
             return;
           }
 
-          // Caso contrário, realiza a pesquisa pelo RA digitado
           $.ajax({
-            url: "conexao/usuarios/pesquisarUsuario.php",
+            url: "conexao/enderecos/pesquisarEndereco.php",
             method: "POST",
-            data: {
-              ra: raUsuario
-            },
+            data: { termo: termo },
             success: function(response) {
               document.getElementById("dadosTabela").innerHTML = response;
             },
@@ -583,37 +511,22 @@ if (!isset($_SESSION['usuario'])) {
         });
       });
 
-      // Função para carregar todos os usuários
-      function carregarTodosUsuarios() {
+      // ---------------------------------- LISTAR (Carregar Todos) -----------------------------------------------------------
+      function carregarEnderecos() {
         $.ajax({
-          url: "conexao/usuarios/listarUsuarios.php",
-          method: "GET",
-          success: function(response) {
-            document.getElementById("dadosTabela").innerHTML = response;
-          },
-          error: function() {
-            Swal.fire('Erro!', 'Não foi possível carregar os dados.', 'error');
-          }
-        });
-      }
-
-
-      // ---------------------------------- LISTAR -----------------------------------------------------------
-      function carregarUsuarios() {
-        $.ajax({
-          url: "conexao/usuarios/listarUsuarios.php",
+          url: "conexao/enderecos/listarEnderecos.php",
           method: "GET",
           success: function(response) {
             const tabela = $("#dadosTabela");
 
-            if (!response.trim() || response.trim().replace(/\s/g, '') === '') {
+            if (!response || response.trim().replace(/\s/g, '') === '') {
               tabela.html(`
-          <tr>
-            <td colspan="7" class="text-center align-middle text-black py-4">
-              Nenhum usuário encontrado.
-            </td>
-          </tr>
-        `);
+                <tr>
+                  <td colspan="8" class="text-center align-middle text-black py-4">
+                    Nenhum endereço encontrado.
+                  </td>
+                </tr>
+              `);
             } else {
               tabela.html(response);
             }
@@ -624,267 +537,161 @@ if (!isset($_SESSION['usuario'])) {
         });
       }
 
-
-      // Recarregar os dados ao carregar a página
-      $(document).ready(function() {
-        carregarUsuarios();
-      });
-
-
-      document.addEventListener("keydown", function(event) {
-        // Verifica se a tecla pressionada é 'Enter' e o foco está em um campo do formulário
-        if (event.key === "Enter") {
-          const element = document.activeElement;
-          if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
-            event.preventDefault(); // Impede o comportamento padrão (submissão do formulário)
-            return false;
-          }
-        }
-      });
-
-
-
       // --------------------------------- VISUALIZAR ------------------------------------------------------------      
 
-      $(document).ready(function() {
-        $(document).on("click", ".btn-visualizar", function() {
-          const id = $(this).data("id");
+      $(document).on("click", ".btn-visualizar", function() {
+        const id = $(this).data("id");
 
-          $.ajax({
-            url: "conexao/usuarios/visualizarUsuario.php",
-            method: "POST",
-            data: {
-              id: id
-            },
-            success: function(response) {
-              $("#modal-body-content").html(response);
-              $("#modalVisualizar").modal("show");
-            },
-            error: function() {
-              Swal.fire("Erro!", "Não foi possível visualizar os dados.", "error");
-            }
-          });
+        $.ajax({
+          url: "conexao/enderecos/visualizarEndereco.php",
+          method: "POST",
+          data: { id: id },
+          success: function(response) {
+            $("#modal-body-content").html(response);
+            $("#modalVisualizar").modal("show");
+          },
+          error: function() {
+            Swal.fire("Erro!", "Não foi possível visualizar os dados.", "error");
+          }
         });
+      });
 
-        // ---------------------------------------------------------------------------------------------
-        $(document).ready(function() {
-          $(document).on("click", ".btn-editar", function() {
-            const id = $(this).data("id");
+      // --------------------------------- EDITAR (Carregar Dados no Modal) ------------------------------------------------------------
+      
+      $(document).on("click", ".btn-editar", function() {
+        const id = $(this).data("id");
 
-            $.ajax({
-              url: "conexao/usuarios/editarUsuario.php",
-              method: "POST",
-              data: {
-                id: id
-              },
-              dataType: "json",
-              success: function(response) {
-                if (response.error) {
-                  Swal.fire("Erro!", response.error, "error");
-                } else {
-                  // Preenche os campos com os dados recebidos e salva valores originais
-                  $("#edit_id").val(response.id);
-                  $("#edit_nome").val(response.nome).data("original", response.nome);
-                  $("#edit_ra").val(response.ra).data("original", response.ra);
-                  $("#edit_login").val(response.ra).data("original", response.ra);
-                  $("#edit_email").val(response.email).data("original", response.email);
-                  $("#edit_telefone").val(response.telefone).data("original", response.telefone);
+        $.ajax({
+          url: "conexao/enderecos/editarEndereco.php",
+          method: "POST",
+          data: { id: id },
+          dataType: "json",
+          success: function(response) {
+            if (response.error) {
+              Swal.fire("Erro!", response.error, "error");
+            } else {
+              $("#edit_id").val(response.id);
+              $("#edit_rua").val(response.rua).data("original", response.rua);
+              $("#edit_numero").val(response.numero).data("original", response.numero);
+              $("#edit_cidade").val(response.cidade).data("original", response.cidade);
+              $("#edit_estado").val(response.estado).data("original", response.estado);
+              $("#edit_cep").val(response.cep).data("original", response.cep);
 
-                  // Limpa radios e marca o correto, salvando valor original
-                  $("input[name='edit_area']").each(function() {
-                    $(this).prop("checked", false);
-                    if ($(this).val() === response.area) {
-                      $(this).prop("checked", true).data("original", true);
-                    } else {
-                      $(this).data("original", false);
-                    }
-                  });
-
-                  $("#edit_senha").val("");
-
-                  $("#modalEditarUsuario").modal("show");
-                }
-              },
-              error: function() {
-                Swal.fire("Erro!", "Não foi possível carregar os dados do usuário.", "error");
-              }
-            });
-          });
-
-          // Atualizar o Login quando o RA for alterado
-          $("#edit_ra").on("input", function() {
-            $("#edit_login").val($(this).val());
-          });
-
-          // Salvar alterações ao clicar no botão "Salvar Alterações"
-          $("#formEditarUsuario").submit(function(e) {
-            e.preventDefault();
-
-            const id = $("#edit_id").val();
-            const nome = $("#edit_nome").val();
-            const ra = $("#edit_ra").val();
-            const email = $("#edit_email").val();
-            const telefone = $("#edit_telefone").val();
-            const area = $("input[name='edit_area']:checked").val();
-            const senha = $("#edit_senha").val(); // Senha pode ser vazia
-
-            const houveAlteracao =
-              nome !== $("#edit_nome").data("original") ||
-              ra !== $("#edit_ra").data("original") ||
-              email !== $("#edit_email").data("original") ||
-              telefone !== $("#edit_telefone").data("original") ||
-              senha !== "" ||
-              !$("input[name='edit_area']:checked").data("original");
-
-            if (!houveAlteracao) {
-              Swal.fire("Atenção!", "Nenhuma alteração foi feita.", "info");
-              return;
+              $("#modalEditarEndereco").modal("show");
             }
-
-            $.ajax({
-              url: "conexao/usuarios/salvarEdicaoUsuario.php",
-              method: "POST",
-              data: {
-                id,
-                nome,
-                ra,
-                email,
-                telefone,
-                area,
-                senha
-              },
-              dataType: "json",
-              success: function(response) {
-                if (response.success) {
-                  Swal.fire({
-                    title: "Sucesso!",
-                    text: response.success,
-                    icon: "success",
-                    confirmButtonText: "OK"
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      $("#modalEditarUsuario").modal("hide");
-                      location.reload();
-                    }
-                  });
-                } else {
-                  Swal.fire("Erro!", response.error, "error");
-                }
-              },
-              error: function() {
-                Swal.fire("Erro!", "Não foi possível salvar as alterações.", "error");
-              }
-            });
-          });
+          },
+          error: function() {
+            Swal.fire("Erro!", "Não foi possível carregar os dados do endereço.", "error");
+          }
         });
+      });
 
-        // Função para resetar os campos após salvar
-        function resetarCampos() {
-          $("#codigoUsuario").val('');
-          $("#nomeUsuario").val('');
-          $("#raUsuario").val('');
-          $("#emailUsuario").val('');
-          $("#telefoneUsuario").val('');
-          $("input[name='areaUsuario']").prop("checked", false); // Desmarca todos os rádios
-          $("#senhaUsuario").val('');
-          $("#loginUsuario").val('');
+      // --------------------------------- SALVAR EDIÇÃO ------------------------------------------------------------
+
+      $("#formEditarEndereco").submit(function(e) {
+        e.preventDefault();
+
+        const id = $("#edit_id").val();
+        const rua = $("#edit_rua").val();
+        const numero = $("#edit_numero").val();
+        const cidade = $("#edit_cidade").val();
+        const estado = $("#edit_estado").val();
+        const cep = $("#edit_cep").val();
+
+        const houveAlteracao =
+          rua !== $("#edit_rua").data("original") ||
+          numero !== $("#edit_numero").data("original") ||
+          cidade !== $("#edit_cidade").data("original") ||
+          estado !== $("#edit_estado").data("original") ||
+          cep !== $("#edit_cep").data("original");
+
+        if (!houveAlteracao) {
+          Swal.fire("Atenção!", "Nenhuma alteração foi feita.", "info");
+          return;
         }
 
-        // --------------------------------- EXCLUIR ------------------------------------------------------------
-
-        $(document).on("click", ".btn-excluir", function() {
-          const id = $(this).data("id");
-
-          // Verificar se o ID foi capturado corretamente
-          // console.log("ID capturado para exclusão: ", id);//DEBUG
-
-
-          if (!id) {
-            Swal.fire("Erro!", "Nenhum ID foi capturado para exclusão.", "error");
-            return;
-          }
-
-          // Exibir confirmação antes de excluir
-          Swal.fire({
-            title: "Tem certeza?",
-            text: "Essa ação não poderá ser desfeita!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Sim, excluir!",
-            cancelButtonText: "Cancelar",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              $.ajax({
-                url: "conexao/usuarios/excluirUsuario.php",
-                method: "POST",
-                data: {
-                  id: id
-                },
-                dataType: "json", // Espera uma resposta JSON
-                success: function(response) {
-                  //  console.log("Resposta do servidor: ", response); //DEBUG
-                  if (response.status === "success") {
-                    Swal.fire("Excluído!", response.message, "success");
-                    carregarUsuarios(); // Atualiza a tabela
-                  } else {
-                    Swal.fire("Erro!", response.message, "error");
-                  }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                  //  console.error("Erro AJAX: ", textStatus, errorThrown);//DEBUG
-                  Swal.fire("Erro!", "Não foi possível excluir o registro.", "error");
+        $.ajax({
+          url: "conexao/enderecos/salvarEdicaoEndereco.php",
+          method: "POST",
+          data: { id, rua, numero, cidade, estado, cep },
+          dataType: "json",
+          success: function(response) {
+            if (response.success) {
+              Swal.fire({
+                title: "Sucesso!",
+                text: response.success,
+                icon: "success",
+                confirmButtonText: "OK"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  $("#modalEditarEndereco").modal("hide");
+                  location.reload();
                 }
               });
+            } else {
+              Swal.fire("Erro!", response.error, "error");
             }
-          });
+          },
+          error: function() {
+            Swal.fire("Erro!", "Não foi possível salvar as alterações.", "error");
+          }
         });
-
-        // --------------------------------- PREENCHER TABELA ------------------------------------------------------------
-
-        function preencherTabela(dados) {
-          const tbody = document.getElementById('dadosTabela');
-          tbody.innerHTML = '';
-
-          dados.forEach(usuario => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-          <td>${usuario.id}</td>
-          <td>${usuario.nome}</td>
-          <td>${usuario.dataCadastroUsuario}</td>
-          <td>${usuario.nivel}</td>
-          <td><button type="button" class="btn btn-primary">Visualizar</button></td>
-          <td><button type="button" class="btn btn-success">Editar</button></td>
-          <td><button type="button" class="btn btn-danger">Excluir</button></td>
-        `;
-            tbody.appendChild(tr);
-          });
-        }
-
-        // Carrega os dados assim que a página é carregada
-        carregarUsuarios();
-
       });
 
-      // Pressionar Enter dentro do modal de edição envia o formulário
-      $('#modalEditarUsuario').on('keydown', function(e) {
+      // --------------------------------- EXCLUIR ------------------------------------------------------------
+
+      $(document).on("click", ".btn-excluir", function() {
+        const id = $(this).data("id");
+
+        if (!id) {
+          Swal.fire("Erro!", "Nenhum ID foi capturado para exclusão.", "error");
+          return;
+        }
+
+        Swal.fire({
+          title: "Tem certeza?",
+          text: "Essa ação não poderá ser desfeita!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Sim, excluir!",
+          cancelButtonText: "Cancelar",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              url: "conexao/enderecos/excluirEndereco.php",
+              method: "POST",
+              data: { id: id },
+              dataType: "json",
+              success: function(response) {
+                if (response.status === "success") {
+                  Swal.fire("Excluído!", response.message, "success");
+                  carregarEnderecos();
+                } else {
+                  Swal.fire("Erro!", response.message, "error");
+                }
+              },
+              error: function() {
+                Swal.fire("Erro!", "Não foi possível excluir o registro.", "error");
+              }
+            });
+          }
+        });
+      });
+
+      $('#modalEditarEndereco').on('keydown', function(e) {
         if (e.key === 'Enter') {
           e.preventDefault();
-          $('#formEditarUsuario').submit();
+          $('#formEditarEndereco').submit();
         }
       });
 
-      // Dispara o envio do formulário ao pressionar Enter
-      document.querySelector("#frmAddUser").addEventListener("keydown", function(event) {
+      document.querySelector("#frmAddAddress").addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
           event.preventDefault();
-
-          const form = this;
-
-          // Valida se todos os campos obrigatórios estiverem corretos
-          if (form.checkValidity()) {
-            $('#frmAddUser').submit();
+          if (this.checkValidity()) {
+            $('#frmAddAddress').submit();
           } else {
-            form.classList.add("was-validated");
+            this.classList.add("was-validated");
           }
         }
       });
@@ -893,13 +700,10 @@ if (!isset($_SESSION['usuario'])) {
         if (e.key === "Enter") {
           const confirmBtn = document.querySelector(".swal2-confirm");
           if (confirmBtn && confirmBtn.offsetParent !== null) {
-            confirmBtn.click(); // força o click no OK se o Swal estiver visível
+            confirmBtn.click();
           }
         }
       });
     </script>
-
-
 </body>
-
 </html>
