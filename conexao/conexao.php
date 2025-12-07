@@ -3,7 +3,7 @@
 
 function abrirBanco()
 {
-    $conexao = new mysqli("localhost", "root", "", "db_lab_eletronica");
+    $conexao = new mysqli("localhost", "root", "", "lab_eletronica");
     return $conexao;
 }
 

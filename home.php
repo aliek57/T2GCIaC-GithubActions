@@ -67,6 +67,7 @@ if (!isset($_SESSION['usuario'])) {
             <!--<a class="dropdown-item" href="cadastroRequisitante.html">Requisitante</a>
               <a class="dropdown-item" href="cadastroSupervisor.html">Supervisor</a>-->
             <a class="dropdown-item" href="cadastroUsuarios.php">Usuário</a>
+            <a class="dropdown-item" href="cadastroEnderecos.php">Endereço</a>
           </div>
         </li>
         <li class="nav-item dropdown">
