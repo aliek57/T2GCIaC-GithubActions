@@ -30,9 +30,12 @@ jobs:
         run: php -v
 
    
-      # - name: Executar script PHP
-        # run: php calc.php
+      # Validar código PHP
+      - name: Validar código
+        run: |
+          php -l cadastroEnderecos.php
 
-    
+      # Fazer deploy da aplicação no linux ubuntu
+      
       - name: Finalizado
         run: echo "Execução do script PHP concluída com sucesso!"
