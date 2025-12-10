@@ -4,23 +4,21 @@ name: workflow atividade iac pt2
 # gatilhos: esse fluxo é chamado sempre que houver push ou pull request na branch main
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 # agrupa todos os trabalhos desse fluxo
 jobs:
   build:
-    runs-on: ubuntu-latest  # para usar a última versão do Ubuntu
+    runs-on: ubuntu-latest # para usar a última versão do Ubuntu
 
     # lista de etapas a serem executadas no trabalho
     steps:
-      
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
-     
       - name: Instalar PHP
         run: |
           sudo apt-get update
@@ -29,13 +27,12 @@ jobs:
       - name: Verificar versão do PHP
         run: php -v
 
-   
       # Validar código PHP
       - name: Validar código
         run: |
-          php -l cadastroEnderecos.php
+          find . -name "*.php" -print0 | xargs -0 -n1 php -l
 
       # Fazer deploy da aplicação no linux ubuntu
-      
+
       - name: Finalizado
         run: echo "Execução do script PHP concluída com sucesso!"
