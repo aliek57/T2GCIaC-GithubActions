@@ -26,15 +26,7 @@ $resultado = $banco->query($sql);
 <html lang="pt-br">
 
 <head>
-    <!-- <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório: Top Usuários</title>
-    <link href="assets/img/thumbnail_logo_TSI.png" rel="icon" type="image/x-icon" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
   <!-- Logo-->
@@ -90,6 +82,7 @@ $resultado = $banco->query($sql);
                     <div class="dropdown-menu" aria-labelledby="relatorios">
                         <a class="dropdown-item" href="relatorioMovimentacao.php">Movimentações Gerais</a>
                         <a class="dropdown-item" href="inventario.php">Inventário</a>
+                        <a class="dropdown-item" href="relatorioEnderecos.php ">Endereços</a>
                         <a class="dropdown-item" href="relatorioTopUsuarios.php">Top Usuários</a>
                     </div>
                 </li>

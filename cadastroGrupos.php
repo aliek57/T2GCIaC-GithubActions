@@ -182,6 +182,7 @@ if (!isset($_SESSION['usuario'])) {
             <!--<a class="dropdown-item" href="cadastroRequisitante.html">Requisitante</a>
               <a class="dropdown-item" href="cadastroSupervisor.html">Supervisor</a>-->
             <a class="dropdown-item" href="cadastroUsuarios.php">Usuário</a>
+            <a class="dropdown-item" href="cadastroEnderecos.php">Endereço</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -198,6 +199,8 @@ if (!isset($_SESSION['usuario'])) {
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             <a class="dropdown-item" href="relatorioMovimentacao.php">Movimentações Gerais</a>
             <a class="dropdown-item" href="inventario.php">Inventário</a>
+            <a class="dropdown-item" href="relatorioEnderecos.php ">Endereços</a>
+            <a class="dropdown-item" href="relatorioTopUsuarios.php">Top Usuários</a>
           </div>
         </li>
         <li class="nav-item">
