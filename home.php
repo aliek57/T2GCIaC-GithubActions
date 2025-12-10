@@ -85,6 +85,7 @@ if (!isset($_SESSION['usuario'])) {
             <a class="dropdown-item" href="relatorioMovimentacao.php">Movimentações Gerais</a>
             <a class="dropdown-item" href="inventario.php">Inventário</a>
             <a class="dropdown-item" href="relatorioEnderecos.php ">Endereços</a>
+            <a class="dropdown-item" href="relatorioTopUsuarios.php">Top Usuários</a>
           </div>
         </li>
         <li class="nav-item">
