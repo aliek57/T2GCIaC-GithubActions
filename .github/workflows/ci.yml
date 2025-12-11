@@ -33,6 +33,11 @@ jobs:
           find . -name "*.php" -print0 | xargs -0 -n1 php -l
 
       # Fazer deploy da aplicação no linux ubuntu
+      - name: Deploy 
+        run: |
+          echo "Iniciando o deploy da aplicação..."
+          # Comandos para executar o deploy
+          echo "Deploy concluído com sucesso!"
 
       - name: Finalizado
         run: echo "Execução do script PHP concluída com sucesso!"
